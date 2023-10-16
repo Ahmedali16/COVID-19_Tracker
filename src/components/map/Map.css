@@ -1,0 +1,40 @@
+.map {
+  height: 500px;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 20px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 0 8px -4px rgba(0, 0, 0, 0.5);
+}
+
+.map .leaflet-container {
+  height: 100%;
+}
+
+
+.info-flag {
+  height: 80px;
+  width: 100%;
+  background-size: 100% 100%;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  border: 0.5px solid lightgray;
+}
+
+.info-container {
+  width: 150px;
+}
+
+.info-name {
+  font-size: 20px;
+  color: #555;
+  font-weight: bold;
+}
+
+.info-confirmed,
+.info-recovered,
+.info-deaths {
+  font-size: 14px;
+  margin-top: 5px;
+}
