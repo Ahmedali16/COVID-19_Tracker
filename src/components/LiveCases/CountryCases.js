@@ -5,22 +5,30 @@ import ListItemText from "@mui/material/ListItemText";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { Box } from "@mui/material";
+import "../Loader/Loader.css";
 
 const numberWithCommas = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
-const LiveCases_URL = "https://disease.sh/v3/covid-19/countries";
-
-export default function CountryCases() {
+const CountryCases = () => {
+  const LiveCases_URL = "https://disease.sh/v3/covid-19/countries";
   const LiveCases = async () => {
     const response = await axios.get(LiveCases_URL);
     return response.data;
   };
-  const { data } = useQuery({
+  const { data, error, isLoading } = useQuery({
     queryKey: ["sorted"],
     queryFn: LiveCases,
   });
+
+  if (isLoading) {
+    return "loading...";
+  }
+
+  if (error) {
+    alert("There are some issues our team has encountered soon");
+  }
 
   const sortedData = data ? [...data].sort((a, b) => b.cases - a.cases) : null;
 
@@ -62,4 +70,6 @@ export default function CountryCases() {
       </List>
     </Box>
   );
-}
+};
+
+export default CountryCases;

@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import { Chart, registerables } from 'chart.js';
+
+
 import axios from "axios";
+Chart.register(...registerables);
 
 class MapShow extends Component {
   state = {
@@ -11,6 +15,8 @@ class MapShow extends Component {
   componentDidMount() {
     this.initializeMap();
   }
+  
+  
 
   async componentDidUpdate(prevProps) {
     if (this.props.selectedCountry !== prevProps.selectedCountry) {
@@ -34,24 +40,22 @@ class MapShow extends Component {
     }
   }
 
-  async initializeMap() {
-    if (!this.state.initialized) {
-      const mapContainer = document.getElementById("map");
-      mapContainer.style.height = "100%";
-
+  initializeMap() {
+    const mapContainer = document.getElementById("map");
+  
+    if (!mapContainer) {
       const map = L.map("map").setView([30, 70], 4);
-
+  
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
-        attribution:
-          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       }).addTo(map);
-
+  
       this.map = map;
-      this.setState({ initialized: true });
       this.updateMap();
     }
   }
+  
 
   async updateMap() {
     const { selectedCountry } = this.props;

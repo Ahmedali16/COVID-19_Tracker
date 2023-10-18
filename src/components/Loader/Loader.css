@@ -1,0 +1,50 @@
+.loader {
+    width: 96px;
+    height: 96px;
+    background: #8b0000;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+.loader::after {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    left: 12px;
+    top: 20px;
+    width: 24px;
+    height: 24px;
+    color: #ffffff;
+    background: currentColor;
+    border-radius: 50%;
+    box-shadow: 50px 4px, 20px 44px;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+/* Rotating Animation  */
+@keyframes rotatingAnimation {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loaderImg {
+    animation-name: rotatingAnimation;
+    animation-duration: 1.8s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}

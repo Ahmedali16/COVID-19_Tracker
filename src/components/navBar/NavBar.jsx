@@ -27,7 +27,7 @@ function NavBar({ selectedCountry, handleCountryChange }) {
               value={selectedCountry}
               onChange={handleCountryChange}
             >
-              <MenuItem value="worldWide">worldWide</MenuItem>
+              <MenuItem value="worldWide">Worldwide</MenuItem>
               {countriesData?.map((item) => (
                 <MenuItem key={item.country} value={item.country}>
                   {item.country}

@@ -2,8 +2,6 @@ import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
 import { Stack } from "@mui/material";
 
 const formatNumber = (value) => {
@@ -17,40 +15,17 @@ const formatNumber = (value) => {
 };
 
 export default function Cards({
-  selectedCountry,
   casesCard,
   handleCardClick,
   recoveredCard,
   handleRecovered,
   deathCard,
   handleDeath,
+  data,
 }) {
-  const Cases_URL = `https://disease.sh/v3/covid-19/countries/`;
-  const worldWide_URL = `https://disease.sh/v3/covid-19/all`;
-
-  const worldWide = async () => {
-    const response = await axios.get(worldWide_URL);
-    return response.data;
-  };
-
-  const fetchData = async () => {
-    if (selectedCountry === "worldWide") {
-      return worldWide();
-    } else {
-      const response = await axios.get(`${Cases_URL}${selectedCountry}`);
-      return response.data;
-    }
-  };
-
-  const { data, error } = useQuery(["CountryData", selectedCountry], fetchData);
-
-  if (error) {
-    return <p>{error.message}</p>;
-  }
-
   return (
     <>
-      <Stack sx={{ flexDirection: { xs: "column", md: "row" } }} gap={2} my={3}>
+      <Stack sx={{ flexDirection: { xs: "column", sm: "row" } }} gap={2} my={3}>
         <Card
           sx={{
             width: "100%",
